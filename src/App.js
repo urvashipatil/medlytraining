@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Counter from "./components/counter";
+import CounterReducer from "./components/counter/counter-reducer";
 import InputTextbox from "./components/input-textbox";
 import MyTodo from "./components/todoapp/my-todo";
 // import { ThemeContext } from "./theme-context";
@@ -14,8 +15,9 @@ function App() {
         {/* <ThemeContext.Provider value={{theme,setTheme}}></ThemeContext.Provider> */}
         {/* <div>My First React App</div> */}
         <div>
-          <Counter />
-          <MyTodo />
+          <CounterReducer step={5} />
+          {/* <Counter />
+          <MyTodo /> */}
 
           {/* <MyTodo /> */}
 
