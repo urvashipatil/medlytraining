@@ -1,6 +1,7 @@
 import React, { useState, useContext, useReducer } from "react";
 
 import { ThemeContext } from "../../theme-context";
+import { useParams, useLocation } from "react-router-dom";
 import "./counter.css";
 
 const INCREMENT = "INCREMENT";
@@ -24,6 +25,11 @@ function counterReducer(state, action) {
 }
 
 export default function CounterReducer({ step = 1 }) {
+  const { name } = useParams();
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
   const [state, dispatch] = useReducer(counterReducer, {
     count: 0,
     error: "",
@@ -39,7 +45,9 @@ export default function CounterReducer({ step = 1 }) {
   };
   return (
     <React.Fragment>
-      <h3>useState Demo {state.count}</h3>
+      <h3>
+        {name} useState Demo {state.count}
+      </h3>
       <div className={theme}>
         <button onClick={onIncrement}>Increment</button>
         <button onClick={onDecrement}>Decrement</button>
