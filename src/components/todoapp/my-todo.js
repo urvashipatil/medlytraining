@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./todo.css";
 import TodoList from "./todo-list";
 import TodoForm from "./todo-form.js";
+import { TodoContext } from "./todo-context";
 
 export default function MyTodo() {
   const [todos, setTodos] = useState([]);
@@ -30,9 +31,10 @@ export default function MyTodo() {
     setTodos(updatedTodos);
   };
 
-  const onDeleteTodo=(deleteTodoId)=>{
-
-  }
+  const onDeleteTodo = (deleteTodoId) => {
+    let updatedTodos = todos.filter((t) => t.id != deleteTodoId);
+    setTodos(updatedTodos);
+  };
 
   // [
   //   { id: 1, title: "my Task1", completed: true },
@@ -49,7 +51,7 @@ export default function MyTodo() {
 
     async function getTodos() {
       let response = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos"
+        "https://jsonplaceholder.typicode.com/todos?_limit=5"
       );
       setTodos(response.data);
     }
@@ -60,8 +62,14 @@ export default function MyTodo() {
   return (
     <React.Fragment>
       <div>My Todo App goes here</div>
-      <TodoForm onTodoAdd={onTodoAdd} />
-      <TodoList todos={todos} onTodoToggle={onTodoToggle}></TodoList>
+      <TodoContext.Provider value={{ onTodoToggle, onDeleteTodo }}>
+        <TodoForm onTodoAdd={onTodoAdd} />
+        <TodoList
+          todos={todos}
+          // onTodoToggle={onTodoToggle}
+          // onDeleteTodo={onDeleteTodo}
+        ></TodoList>
+      </TodoContext.Provider>
     </React.Fragment>
   );
 }

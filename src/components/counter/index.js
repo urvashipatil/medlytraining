@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import { ThemeContext } from "../../theme-context";
 import "./counter.css";
 
 export default function Counter() {
   const [state, setState] = useState(calculateState);
-
+  const { theme } = useContext(ThemeContext);
   //lazy state initalization
   function calculateState() {
     console.log("calculateState");
@@ -40,7 +42,7 @@ export default function Counter() {
   return (
     <React.Fragment>
       <h3>useState Demo {state.count}</h3>
-      <div>
+      <div className={theme}>
         <button onClick={onIncrement}>Increment</button>
         <button onClick={onDecrement}>Decrement</button>
       </div>

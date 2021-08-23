@@ -4,6 +4,10 @@
   margin: 5px;
 }
 
+.todo-item.theme-blue {
+  border: 2px solid blue;
+}
+
 .todo-item.completed {
   text-decoration: line-through;
 }

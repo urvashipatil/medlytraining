@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "./todo-context";
+
+import { ThemeContext } from "../../theme-context";
 
 function TodoItem(props) {
-  const { todo, onTodoToggle } = props;
+  const { onTodoToggle, onDeleteTodo } = useContext(TodoContext);
+  const { theme } = useContext(ThemeContext);
+
+  const { todo } = props;
   return (
     <div
-      className={`todo-item ${todo.completed ? "completed" : ""}`}
+      className={`todo-item ${theme} ${todo.completed ? "completed" : ""}`}
       onDoubleClick={() => {
         onTodoToggle(todo.id);
       }}
     >
-      {todo.title} <span class="fl-right">☒</span>
+      {todo.title}{" "}
+      <span
+        class="fl-right"
+        onClick={() => {
+          onDeleteTodo(todo.id);
+        }}
+      >
+        ☒
+      </span>
     </div>
   );
 }
