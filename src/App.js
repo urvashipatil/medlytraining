@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Counter from "./components/counter";
+import InputTextbox from "./components/input-textbox";
+import MyTodo from "./components/todoapp/my-todo";
 
 function App() {
+  const [show, setShow] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.Fragment>
+      {/* <div>My First React App</div> */}
+      <div>
+        <MyTodo />
+        {/* <Counter /> */}
+        {/* <MyTodo /> */}
+
+        {/* {settings.url}
+        {show && <InputTextbox></InputTextbox>}
+        <button
+          onClick={() => {
+            setShow(!show);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          show/hide inputTextbox
+        </button> */}
+      </div>
+    </React.Fragment>
   );
 }
 
