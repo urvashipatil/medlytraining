@@ -19,6 +19,21 @@ export default function MyTodo() {
       });
   };
 
+  const onTodoToggle = (id) => {
+    let updatedTodos = todos.map((todo) => {
+      if (todo.id == id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+  };
+
+  const onDeleteTodo=(deleteTodoId)=>{
+
+  }
+
   // [
   //   { id: 1, title: "my Task1", completed: true },
   //   { id: 2, title: "my Task2", completed: false },
@@ -46,7 +61,7 @@ export default function MyTodo() {
     <React.Fragment>
       <div>My Todo App goes here</div>
       <TodoForm onTodoAdd={onTodoAdd} />
-      <TodoList todos={todos}></TodoList>
+      <TodoList todos={todos} onTodoToggle={onTodoToggle}></TodoList>
     </React.Fragment>
   );
 }

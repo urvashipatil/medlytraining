@@ -1,10 +1,15 @@
 import React from "react";
 
 function TodoItem(props) {
-  const { todo } = props;
+  const { todo, onTodoToggle } = props;
   return (
-    <div>
-      <div className="todo-item">{todo.title}</div>
+    <div
+      className={`todo-item ${todo.completed ? "completed" : ""}`}
+      onDoubleClick={() => {
+        onTodoToggle(todo.id);
+      }}
+    >
+      {todo.title} <span class="fl-right">☒</span>
     </div>
   );
 }

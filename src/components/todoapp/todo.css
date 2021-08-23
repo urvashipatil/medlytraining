@@ -4,6 +4,27 @@
   margin: 5px;
 }
 
-.todo-item.completed{
+.todo-item.completed {
   text-decoration: line-through;
+}
+
+.fl-right {
+  float: right;
+  color: red;
+  cursor: pointer;
+  position: relative;
+  top: -13px;
+  right: -9px;
+}
+
+.progress {
+  border: 1px solid blue;
+  width: 50%;
+  height: 10px;
+}
+
+.progress-bar {
+  width: 50%;
+  background-color: green;
+  height: 10px;
 }
