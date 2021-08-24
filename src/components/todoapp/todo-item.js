@@ -17,7 +17,7 @@ function TodoItem(props) {
     >
       {todo.title}{" "}
       <span
-        class="fl-right"
+        className="fl-right"
         onClick={() => {
           onDeleteTodo(todo.id);
         }}

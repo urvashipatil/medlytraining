@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Prompt } from "react-router-dom";
 
 export default function TodoForm({ onTodoAdd }) {
   const [task, setTask] = useState({ title: "", completed: false });
+  const [isDirty, setIsDirty] = useState(false);
   const titleRef = useRef(null);
   // const titleRefValue = useRef("");
   // console.log("ref", titleRef);
@@ -19,6 +21,7 @@ export default function TodoForm({ onTodoAdd }) {
 
   const onTaskChange = (e) => {
     setTask({ ...task, [e.target.name]: e.target.value });
+    setIsDirty(true);
   };
   const onClick = () => {
     onTodoAdd(task);
@@ -26,6 +29,12 @@ export default function TodoForm({ onTodoAdd }) {
 
   return (
     <div>
+      <Prompt
+        when={isDirty}
+        message={() =>
+          "There are some unsaved changes. Do you want to go away?"
+        }
+      />
       <input
         ref={titleRef}
         name="title"

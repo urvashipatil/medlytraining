@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Counter from "./components/counter";
 import CounterReducer from "./components/counter/counter-reducer";
 import InputTextbox from "./components/input-textbox";
@@ -11,6 +11,9 @@ import {
   Route,
   Switch,
   NavLink,
+  Redirect,
+  useLocation,
+  useHistory,
 } from "react-router-dom";
 import "./App.css";
 
@@ -49,11 +52,14 @@ function App() {
               <Route path="/counter">
                 <CounterReducer step={5} />
               </Route>
-              <Route path="/todo">
+              <PrivateRoute path="/todo">
                 <MyTodo />
-              </Route>
-              <Route path="/inputtext">
+              </PrivateRoute>
+              <PrivateRoute path="/inputtext">
                 <InputTextbox />
+              </PrivateRoute>
+              <Route path="/login">
+                <Login />
               </Route>
               <Route exact path="/">
                 <div>
@@ -93,4 +99,40 @@ export default App;
 
 function InvalidPath() {
   return <div>Invalid Path. Please check again...</div>;
+}
+
+{
+  /* <PrivateRoute path="/todo">
+                <MyTodo /> 
+    </PrivateRoute> */
+}
+const authentication = {
+  isLoggedin: false,
+};
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route {...rest}>
+      {authentication.isLoggedin ? (
+        children
+      ) : (
+        <Redirect to={{ referer: rest.path, pathname: "/login" }} />
+      )}
+    </Route>
+  );
+}
+
+function Login() {
+  const location = useLocation();
+  const history = useHistory();
+
+  const onLogin = () => {
+    authentication.isLoggedin = true;
+    history.push(location.referer);
+  };
+  return (
+    <div>
+      Login Page here
+      <button onClick={onLogin}>Login</button>
+    </div>
+  );
 }

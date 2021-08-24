@@ -4,9 +4,19 @@ import "./todo.css";
 import TodoList from "./todo-list";
 import TodoForm from "./todo-form.js";
 import { TodoContext } from "./todo-context";
+import {
+  Link,
+  Route,
+  Switch,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
 
 export default function MyTodo() {
   const [todos, setTodos] = useState([]);
+  const { url, path } = useRouteMatch();
+  const history = useHistory();
+  console.log("url-path", url, path);
 
   const onTodoAdd = async (newtodo) => {
     let updatedTodo = { ...newtodo };
@@ -17,6 +27,8 @@ export default function MyTodo() {
       .post("https://jsonplaceholder.typicode.com/todos", updatedTodo)
       .then((response) => {
         setTodos([response.data, ...todos]);
+        //rdeirect to todo list page
+        history.push("/todo/list");
       });
   };
 
@@ -82,12 +94,26 @@ export default function MyTodo() {
     <React.Fragment>
       <div>My Todo App goes here</div>
       <TodoContext.Provider value={{ onTodoToggle, onDeleteTodo }}>
-        <TodoForm onTodoAdd={onTodoAdd} />
-        <TodoList
-          todos={todos}
-          // onTodoToggle={onTodoToggle}
-          // onDeleteTodo={onDeleteTodo}
-        ></TodoList>
+        <div>
+          <span>
+            <Link to={`${url}/list`}>Todo List</Link> |
+          </span>
+          <span>
+            <Link to="/todo/add">Add Todo</Link> |
+          </span>
+        </div>
+        <Switch>
+          <Route path={`${path}/list`}>
+            <TodoList
+              todos={todos}
+              // onTodoToggle={onTodoToggle}
+              // onDeleteTodo={onDeleteTodo}
+            ></TodoList>
+          </Route>
+          <Route path="/todo/add">
+            <TodoForm onTodoAdd={onTodoAdd} />
+          </Route>
+        </Switch>
       </TodoContext.Provider>
     </React.Fragment>
   );
