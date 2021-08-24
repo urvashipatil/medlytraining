@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import MyRenderPropComp from "./components/render-props-example";
+import MyCounter from "./components/use-custom-hooks/my-counter";
 const MyTodo = lazy(() => import("./components/todoapp/my-todo"));
 const InputTextbox = lazy(() => import("./components/input-textbox"));
 
@@ -27,25 +28,22 @@ function App() {
     <React.Fragment>
       <ThemeContextProvider>
         <Router>
-          <div>
+          <div className="header">
             <NavLink activeStyle={{ color: "red" }} to="/counter">
               Counter
             </NavLink>
-          </div>
-          <div>
+
             <NavLink activeClassName="active-link" to="/todo">
               Todo
             </NavLink>
-          </div>
-          <div>
+
             <NavLink
               activeClassName="active-link"
               to={{ pathname: "/inputtext", state: "asas" }}
             >
               Input Text
             </NavLink>
-          </div>
-          <div>
+
             <NavLink activeClassName="active-link" to="/renderpropcomponent">
               Render Props
             </NavLink>
@@ -69,7 +67,10 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/inputtext">
                 <Suspense fallback={<h3>Loading MyTodo...</h3>}>
-                  <InputTextbox />
+                  <React.Fragment>
+                    <MyCounter />
+                    <InputTextbox />
+                  </React.Fragment>
                 </Suspense>
               </PrivateRoute>
               <Route path="/login">

@@ -1,16 +1,22 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useContext, useCallback, useEffect } from "react";
 
 import { ThemeContext } from "../../theme-context";
 import "./counter.css";
 import Child from "./child";
+import useTitle from "../custom-hooks/use-title";
 
 export default function Counter() {
   const [state, setState] = useState(calculateState);
-
   const [name, setName] = useState("");
   const { theme } = useContext(ThemeContext);
-
+  const setTitle = useTitle("Counter ");
   let myArray = [1, 2, 3, 4, 5];
+
+  useEffect(() => {
+    // document.title = `React Training ${state.count}`;
+    setTitle("Count - " + state.count);
+  }, [state.count]);
+
   //lazy state initalization
   function calculateState() {
     console.log("calculateState");

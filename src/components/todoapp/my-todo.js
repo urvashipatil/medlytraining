@@ -94,7 +94,7 @@ export default function MyTodo() {
     <React.Fragment>
       <div>My Todo App goes here</div>
       <TodoContext.Provider value={{ onTodoToggle, onDeleteTodo }}>
-        <div>
+        <div className="todo-links">
           <span>
             <Link to={`${url}/list`}>Todo List</Link> |
           </span>

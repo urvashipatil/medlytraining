@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
+import useTitle from "../custom-hooks/use-title";
+import useStorage from "../custom-hooks/use-storage";
 
 export default function InputTextbox() {
-  const [inputdata, setInputdata] = useState(
-    localStorage.getItem("Name") || ""
+  const [nameValue, setStoredName] = useStorage(
+    "Name",
+    "Default value",
+    window.sessionStorage
   );
 
+  const [testObject, setTestObject] = useStorage("MyObject", "asasas");
+
+  const [inputdata, setInputdata] = useState(nameValue || "");
+
+  // console.log("nameValue, setStoredName", nameValue, setStoredName);
+
+  // setStoredName("asasasasas");
+
+  // const [desiStoredValue, setDesign] = useLocalStorage("designation","");
+
   const [data2, setData2] = useState("");
+  const setTitle = useTitle("Arch ");
 
   //Called on each render
   useEffect(() => {
@@ -19,7 +34,7 @@ export default function InputTextbox() {
   //FirstTime
   useEffect(() => {
     // console.log("useEffect - called first time");
-
+    setTestObject({ fname: "Medly" });
     return () => {
       // console.log("useEffect cleanup on first Time");
     };
@@ -27,7 +42,10 @@ export default function InputTextbox() {
 
   useEffect(() => {
     // console.log("useEffect - called on name change conditionally");
-
+    // localStorage.setItem("Name", inputdata);
+    setStoredName(inputdata);
+    // setStoredName(() => inputdata + " appended");
+    setTitle(inputdata);
     return () => {
       // console.log("useEffect cleanup on conditional useEffect");
     };
@@ -74,7 +92,9 @@ export default function InputTextbox() {
         value={inputdata}
         onChange={onChangeInput}
       ></input>
-      <p>Hi - {inputdata}</p>
+      <p>
+        Hi - {inputdata} - {testObject.fname}
+      </p>
 
       <input
         name="text"

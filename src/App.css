@@ -37,11 +37,21 @@
   }
 }
 
+/* new css */
 .container {
-  padding-top: 10px;
+  padding-top: 45px;
 }
 
 .active-link {
   color: white;
   background-color: gray;
+}
+
+.header {
+  justify-content: space-evenly;
+  display: flex;
+  background: lightskyblue;
+  height: 30px;
+  position: fixed;
+  width: 100%;
 }
