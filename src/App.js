@@ -1,8 +1,8 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import Counter from "./components/counter";
 import CounterReducer from "./components/counter/counter-reducer";
-import InputTextbox from "./components/input-textbox";
-import MyTodo from "./components/todoapp/my-todo";
+// import InputTextbox from "./components/input-textbox";
+// import MyTodo from "./components/todoapp/my-todo";
 // import { ThemeContext } from "./theme-context";
 import ThemeContextProvider from "./theme-context";
 import {
@@ -16,6 +16,8 @@ import {
   useHistory,
 } from "react-router-dom";
 import "./App.css";
+const MyTodo = lazy(() => import("./components/todoapp/my-todo"));
+const InputTextbox = lazy(() => import("./components/input-textbox"));
 
 function App() {
   const [show, setShow] = useState(true);
@@ -50,13 +52,18 @@ function App() {
                 <CounterReducer step={5} />
               </Route> */}
               <Route path="/counter">
-                <CounterReducer step={5} />
+                {/* <CounterReducer step={5} /> */}
+                <Counter />
               </Route>
               <PrivateRoute path="/todo">
-                <MyTodo />
+                <Suspense fallback={<h3>Loading MyTodo...</h3>}>
+                  <MyTodo />
+                </Suspense>
               </PrivateRoute>
               <PrivateRoute path="/inputtext">
-                <InputTextbox />
+                <Suspense fallback={<h3>Loading MyTodo...</h3>}>
+                  <InputTextbox />
+                </Suspense>
               </PrivateRoute>
               <Route path="/login">
                 <Login />
@@ -107,7 +114,7 @@ function InvalidPath() {
     </PrivateRoute> */
 }
 const authentication = {
-  isLoggedin: false,
+  isLoggedin: true,
 };
 function PrivateRoute({ children, ...rest }) {
   return (

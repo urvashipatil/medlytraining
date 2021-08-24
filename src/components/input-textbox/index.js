@@ -9,7 +9,7 @@ export default function InputTextbox() {
 
   //Called on each render
   useEffect(() => {
-    console.log("On every renedr -my useEffect called.");
+    // console.log("On every renedr -my useEffect called.");
     // localStorage.setItem("Name", inputdata);
     return () => {
       console.log("useEffect cleanup on every render");
@@ -18,18 +18,18 @@ export default function InputTextbox() {
 
   //FirstTime
   useEffect(() => {
-    console.log("useEffect - called first time");
+    // console.log("useEffect - called first time");
 
     return () => {
-      console.log("useEffect cleanup on first Time");
+      // console.log("useEffect cleanup on first Time");
     };
   }, []);
 
   useEffect(() => {
-    console.log("useEffect - called on name change conditionally");
+    // console.log("useEffect - called on name change conditionally");
 
     return () => {
-      console.log("useEffect cleanup on conditional useEffect");
+      // console.log("useEffect cleanup on conditional useEffect");
     };
   }, [inputdata]);
 
