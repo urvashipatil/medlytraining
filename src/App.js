@@ -16,6 +16,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import "./App.css";
+import MyRenderPropComp from "./components/render-props-example";
 const MyTodo = lazy(() => import("./components/todoapp/my-todo"));
 const InputTextbox = lazy(() => import("./components/input-textbox"));
 
@@ -44,6 +45,12 @@ function App() {
               Input Text
             </NavLink>
           </div>
+          <div>
+            <NavLink activeClassName="active-link" to="/renderpropcomponent">
+              Render Props
+            </NavLink>
+          </div>
+
           {/* <ThemeContext.Provider value={{theme,setTheme}}></ThemeContext.Provider> */}
           {/* <div>My First React App</div> */}
           <div className="container">
@@ -67,6 +74,13 @@ function App() {
               </PrivateRoute>
               <Route path="/login">
                 <Login />
+              </Route>
+              <Route path="/renderpropcomponent">
+                <MyRenderPropComp
+                  render={() => {
+                    return <h3>My first Render props component</h3>;
+                  }}
+                />
               </Route>
               <Route exact path="/">
                 <div>
