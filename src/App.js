@@ -18,6 +18,7 @@ import {
 import "./App.css";
 import MyRenderPropComp from "./components/render-props-example";
 import MyCounter from "./components/use-custom-hooks/my-counter";
+import StyledApp from "./components/styled-components/styled-app";
 const MyTodo = lazy(() => import("./components/todoapp/my-todo"));
 const InputTextbox = lazy(() => import("./components/input-textbox"));
 
@@ -46,6 +47,9 @@ function App() {
 
             <NavLink activeClassName="active-link" to="/renderpropcomponent">
               Render Props
+            </NavLink>
+            <NavLink activeClassName="active-link" to="/styledcomponents">
+              Styled Components
             </NavLink>
           </div>
 
@@ -82,6 +86,9 @@ function App() {
                     return <h3>My first Render props component</h3>;
                   }}
                 />
+              </Route>
+              <Route path="/styledcomponents">
+                <StyledApp color="blue" />
               </Route>
               <Route exact path="/">
                 <div>

@@ -5,25 +5,30 @@ import { ThemeContext } from "../../theme-context";
 export default function TodoList({ todos }) {
   const { theme, setTheme } = useContext(ThemeContext);
   return (
-    <div>
-      <button
-        onClick={() => {
-          setTheme(theme == "theme-blue" ? "theme-black" : "theme-blue");
-        }}
-      >
-        Toggle Theme
-      </button>
-      {todos.map((todo, index) => {
-        return (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            // onTodoToggle={onTodoToggle}
-            // onDeleteTodo={onDeleteTodo}
-          ></TodoItem>
-        );
-      })}
-    </div>
+    <React.Fragment>
+      <div>
+        {todos.map((todo, index) => {
+          return (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              // onTodoToggle={onTodoToggle}
+              // onDeleteTodo={onDeleteTodo}
+            ></TodoItem>
+          );
+        })}
+      </div>
+      <div className="list-footer">
+        {" "}
+        <button
+          onClick={() => {
+            setTheme(theme == "theme-blue" ? "theme-black" : "theme-blue");
+          }}
+        >
+          Toggle Theme
+        </button>
+      </div>
+    </React.Fragment>
   );
 }
 

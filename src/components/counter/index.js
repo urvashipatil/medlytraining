@@ -57,20 +57,23 @@ export default function Counter() {
 
   return (
     <React.Fragment>
-      <h3>useState Demo {state.count}</h3>
-      <div className={theme}>
-        <button onClick={onIncrement}>Increment</button>
-        <button onClick={onDecrement}>Decrement</button>
+      <div className="counter-container">
+        <div className="counter-title">useState Demo {state.count}</div>
+        <div className={theme}>
+          <button onClick={onIncrement}>Increment</button>
+          <button onClick={onDecrement}>Decrement</button>
+        </div>
       </div>
       {state.error && <div className="error">{state.error}</div>}
       <div style={{ border: "1px solid gray", padding: "5px", margin: "10px" }}>
+        <label style={{ paddingRight: "10px" }}>Change the Text Here</label>
         <input
           name="text"
           type="text"
           value={name}
           onChange={onChangeInput}
         ></input>
-        <p>In the counter - {name}</p>
+        <p>You typed - {name}</p>
       </div>
       <Child
         myArray={myArray}

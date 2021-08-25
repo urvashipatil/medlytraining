@@ -36,3 +36,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.list-footer {
+  float: right;
+}

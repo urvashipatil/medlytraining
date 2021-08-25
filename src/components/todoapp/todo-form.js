@@ -35,16 +35,20 @@ export default function TodoForm({ onTodoAdd }) {
           "There are some unsaved changes. Do you want to go away?"
         }
       />
-      <input
-        ref={titleRef}
-        name="title"
-        id="title"
-        type="text"
-        value={task.title}
-        onChange={onTaskChange}
-      ></input>
-      {/* {JSON.stringify(titleRefValue.current)} */}
-      <button onClick={onClick}>Add Task</button>
+      <div className="form-title">Add Task</div>
+      <div className="form-control">
+        <input
+          ref={titleRef}
+          name="title"
+          id="title"
+          type="text"
+          value={task.title}
+          onChange={onTaskChange}
+        ></input>
+
+        {/* {JSON.stringify(titleRefValue.current)} */}
+        <button onClick={onClick}>Add Task</button>
+      </div>
     </div>
   );
 }

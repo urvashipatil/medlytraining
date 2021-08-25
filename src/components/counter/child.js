@@ -17,7 +17,12 @@ function Child({ count, changeCount }) {
       onDoubleClick={() => {
         changeCount();
       }}
-      style={{ width: "200px", height: "200px", border: "1px solid red" }}
+      style={{
+        height: "100px",
+        border: "1px solid red",
+        padding: "5px",
+        margin: "10px",
+      }}
     >
       <h4>
         Child - {count} -- {calculate}
