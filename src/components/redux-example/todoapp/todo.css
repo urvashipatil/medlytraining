@@ -1,0 +1,42 @@
+.todo-item {
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 5px;
+}
+
+.todo-item.theme-blue {
+  border: 2px solid blue;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+}
+
+.fl-right {
+  float: right;
+  color: red;
+  cursor: pointer;
+  position: relative;
+  top: -13px;
+  right: -9px;
+}
+
+.progress {
+  border: 1px solid blue;
+  width: 50%;
+  height: 10px;
+}
+
+.progress-bar {
+  width: 50%;
+  background-color: green;
+  height: 10px;
+}
+.todo-links {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.list-footer {
+  float: right;
+}

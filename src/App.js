@@ -19,6 +19,11 @@ import "./App.css";
 import MyRenderPropComp from "./components/render-props-example";
 import MyCounter from "./components/use-custom-hooks/my-counter";
 import StyledApp from "./components/styled-components/styled-app";
+import CounterRedux from "./components/redux-example/counter-redux";
+import MyTodoAppRedux from "./components/redux-example/todoapp/my-todo";
+import { Provider } from "react-redux";
+import { store } from "./components/redux-example/todoapp/redux/store";
+
 const MyTodo = lazy(() => import("./components/todoapp/my-todo"));
 const InputTextbox = lazy(() => import("./components/input-textbox"));
 
@@ -50,6 +55,9 @@ function App() {
             </NavLink>
             <NavLink activeClassName="active-link" to="/styledcomponents">
               Styled Components
+            </NavLink>
+            <NavLink activeClassName="active-link" to="/redux">
+              Redux
             </NavLink>
           </div>
 
@@ -89,6 +97,12 @@ function App() {
               </Route>
               <Route path="/styledcomponents">
                 <StyledApp color="blue" />
+              </Route>
+              <Route path="/redux">
+                {/* <CounterRedux initialValue={0} /> */}
+                <Provider store={store}>
+                  <MyTodoAppRedux />
+                </Provider>
               </Route>
               <Route exact path="/">
                 <div>
